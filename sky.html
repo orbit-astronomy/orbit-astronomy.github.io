@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ORBIT — The Night Sky</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="explorer.css">
+  <!-- Three.js draws the sky. No OrbitControls here: sky.js turns the camera itself, like your head. -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <!-- ORDER MATTERS (defer = run in this order after the page loads):
+       script.js (page starfield) -> sky-data.js (real stars) -> textures.js (we reuse its random + noise helpers) -> sky.js (engine) -->
+  <script src="script.js" defer></script>
+  <script src="sky-data.js" defer></script>
+  <script src="textures.js" defer></script>
+  <script src="sky.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#sky">Skip to the sky</a>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="shell explorer-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">✦ ORBIT<span>.</span></a>
+      <nav aria-label="Main navigation"><a href="index.html">← Home</a><a href="index.html#worlds">All worlds</a></nav>
+      <span class="live-pill"><i></i> SKY MAP / ONLINE</span>
+    </header>
+
+    <main>
+      <section class="explorer-heading">
+        <p class="eyebrow"><b></b> STARS &amp; CONSTELLATIONS</p>
+        <h1>The <em>night sky.</em></h1>
+        <p>Stand in the middle of the celestial sphere. Drag to look around, scroll to zoom, or pick a constellation and fly straight to it. Named stars are at their real positions.</p>
+      </section>
+
+      <section class="lab-layout" aria-label="Interactive night sky">
+        <div class="viewport-card">
+          <div id="sky" tabindex="0" role="group" aria-label="Interactive night sky. Drag or use the arrow keys to look around; plus and minus to zoom." aria-describedby="sky-help"></div>
+          <div id="sky-labels" aria-hidden="true"></div>
+          <div class="viewport-top"><span id="sky-readout"></span><span class="live-pill"><i></i> LIVE SKY</span></div>
+          <div class="viewport-tools" role="toolbar" aria-label="Camera controls">
+            <button type="button" data-action="left" aria-label="Look left">◀</button>
+            <button type="button" data-action="right" aria-label="Look right">▶</button>
+            <button type="button" data-action="up" aria-label="Look up">▲</button>
+            <button type="button" data-action="down" aria-label="Look down">▼</button>
+            <button type="button" data-action="in" aria-label="Zoom in">+</button>
+            <button type="button" data-action="out" aria-label="Zoom out">−</button>
+            <button type="button" data-action="reset" aria-label="Back to Orion">⌂</button>
+          </div>
+          <div class="viewport-bottom" id="sky-help"><span>DRAG: LOOK AROUND</span><span>SCROLL / PINCH: ZOOM</span><span>ARROW KEYS · + / − · R</span></div>
+          <div id="loading" class="loading" role="status">Painting the sky…</div>
+        </div>
+
+        <aside class="control-panel" id="controls">
+          <div class="panel-label">SKY GUIDE <span>12 FIGURES · 79 STARS</span></div>
+          <div id="toggle-list"></div>
+          <div class="control-divider"></div>
+          <div class="con-list" id="con-list" role="group" aria-label="Constellations"></div>
+          <p class="panel-note">Named stars and constellation figures use real positions. The faint background stars and the Milky Way's glow are randomly generated, but the Milky Way lies along the true plane of our galaxy.</p>
+        </aside>
+      </section>
+
+      <section class="layer-guide" aria-labelledby="sky-detail-title">
+        <div class="layer-intro">
+          <p class="eyebrow">CONSTELLATION</p>
+          <h2 id="sky-detail-title">Read the <em>sky.</em></h2>
+          <div class="layer-detail" id="con-detail" aria-live="polite"></div>
+        </div>
+        <div class="layer-ui">
+          <p class="eyebrow">STAR</p>
+          <div class="layer-detail" id="star-detail" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="content-block" aria-labelledby="sky-facts-title">
+        <div class="section-title"><div><p class="eyebrow">DID YOU KNOW?</p><h2 id="sky-facts-title">How to <em>read the stars.</em></h2></div></div>
+        <div class="fact-grid" id="fact-grid"></div>
+      </section>
+
+      <p class="back-row"><a class="primary" href="index.html#worlds">← Back to the hub</a></p>
+    </main>
+    <footer>ORBIT<span>.</span> Keep looking up. <b>SKY MAP / 0.5</b></footer>
+  </div>
+  <p class="sr-only" id="status" aria-live="polite"></p>
+</body>
+</html>

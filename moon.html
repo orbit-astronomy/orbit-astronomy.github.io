@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ORBIT — Moon</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="explorer.css">
+  <!-- Three.js draws the 3D scene; OrbitControls adds mouse/touch navigation. -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- ORDER MATTERS. defer = run after the page is parsed, in the order listed:
+       script.js (starfield) -> worlds.js (data) -> textures.js (painter) -> explorer.js (engine). -->
+  <script src="script.js" defer></script>
+  <script src="worlds.js" defer></script>
+  <script src="textures.js" defer></script>
+  <script src="explorer.js" defer></script>
+</head>
+<!-- data-world is the ONLY thing that differs between planet pages. explorer.js reads it,
+     looks that key up in worlds.js, and builds just that one body. -->
+<body data-world="moon">
+  <a class="skip-link" href="#scene">Skip to the 3D view</a>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="shell explorer-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">✦ ORBIT<span>.</span></a>
+      <nav aria-label="Main navigation"><a href="index.html">← Home</a><a href="index.html#worlds">All worlds</a></nav>
+      <span class="live-pill"><i></i> 3D LAB / ONLINE</span>
+    </header>
+
+    <main>
+      <section class="explorer-heading">
+        <p class="eyebrow"><b></b> <span id="world-eyebrow">PLANETARY EXPLORATION</span></p>
+        <h1>Explore <em>Moon.</em></h1>
+        <p id="world-tagline"></p>
+      </section>
+
+      <section class="lab-layout" aria-label="Interactive 3D laboratory">
+        <div class="viewport-card">
+          <div id="scene" tabindex="0" role="group" aria-label="Interactive 3D model of Moon" aria-describedby="scene-help"></div>
+          <div class="viewport-top"><span id="scene-kicker"></span><span class="live-pill"><i></i> LIVE MODEL</span></div>
+          <div class="viewport-tools" role="toolbar" aria-label="Camera controls">
+            <button type="button" data-action="left" aria-label="Rotate left">⟲</button>
+            <button type="button" data-action="right" aria-label="Rotate right">⟳</button>
+            <button type="button" data-action="up" aria-label="Tilt view up">▲</button>
+            <button type="button" data-action="down" aria-label="Tilt view down">▼</button>
+            <button type="button" data-action="in" aria-label="Zoom in">+</button>
+            <button type="button" data-action="out" aria-label="Zoom out">−</button>
+            <button type="button" data-action="reset" aria-label="Reset view">⌂</button>
+          </div>
+          <div class="viewport-bottom" id="scene-help"><span>DRAG: ROTATE</span><span>SCROLL / PINCH: ZOOM</span><span>ARROW KEYS · + / − · R</span></div>
+          <div id="loading" class="loading" role="status">Building your world…</div>
+        </div>
+
+        <aside class="control-panel" id="controls">
+          <div class="panel-label">YOU ARE VIEWING <span>ONE WORLD</span></div>
+          <div class="world-facts">
+            <small>OBJECT PROFILE</small>
+            <h2 id="world-name">Moon</h2>
+            <p id="world-description"></p>
+            <div class="fact-line"><span>TYPE</span><strong id="world-type"></strong></div>
+          </div>
+          <div class="control-divider"></div>
+          <div id="toggle-list"></div>
+          <div class="control-divider"></div>
+          <dl class="stat-grid" id="stat-grid"></dl>
+          <div class="control-divider"></div>
+          <div class="weight-box">
+            <label for="weight-input">Your weight here</label>
+            <div class="weight-row"><input id="weight-input" type="number" min="1" step="1" value="60" inputmode="decimal">
+              <select id="weight-unit" aria-label="Weight unit"><option value="kg">kg</option><option value="lb">lb</option></select></div>
+            <output id="weight-output" for="weight-input weight-unit"></output>
+          </div>
+          <p class="panel-note" id="panel-note">Models are illustrative, not to scale. Skins are painted procedurally; Earth and the Moon upgrade to photos when online.</p>
+        </aside>
+      </section>
+
+      <section class="layer-guide" id="layers" aria-labelledby="layers-title">
+        <div class="layer-intro">
+          <p class="eyebrow" id="layers-eyebrow"></p>
+          <h2 id="layers-title"></h2>
+          <p id="layers-lead"></p>
+        </div>
+        <div class="layer-ui">
+          <div class="layer-list" id="layer-list"></div>
+          <div class="layer-detail" id="layer-detail" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="content-block" aria-labelledby="facts-title">
+        <div class="section-title"><div><p class="eyebrow">DID YOU KNOW?</p><h2 id="facts-title">Strange &amp; <em>wonderful.</em></h2></div></div>
+        <div class="fact-grid" id="fact-grid"></div>
+      </section>
+
+      <section class="content-block" aria-labelledby="missions-title">
+        <div class="section-title"><div><p class="eyebrow">EXPLORATION</p><h2 id="missions-title">Visitors &amp; <em>milestones.</em></h2></div></div>
+        <ol class="mission-list" id="mission-list"></ol>
+      </section>
+
+      <p class="back-row"><a class="primary" href="index.html#worlds">← Choose another world</a></p>
+    </main>
+    <footer>ORBIT<span>.</span> Keep looking up. <b>PLANETARY LAB / 0.4</b></footer>
+  </div>
+  <p class="sr-only" id="status" aria-live="polite"></p>
+</body>
+</html>

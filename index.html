@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ORBIT — Explore the universe</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- defer runs JS after the HTML has been parsed. -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#home">✦ ORBIT<span>.</span></a>
+      <nav aria-label="Main navigation">
+        <a class="active" href="#home">Overview</a><a href="#worlds">Worlds</a><a href="#asteroids">Asteroids</a><a href="sky.html">Sky</a><a href="earth.html">3D Explorer</a>
+      </nav>
+      <button id="theme-button" aria-pressed="false"><i></i><span id="theme-label">Stellar mode</span></button>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div>
+          <p class="eyebrow"><b></b> YOUR WINDOW TO THE COSMOS</p>
+          <h1>The universe is<br><em>closer than you think.</em></h1>
+          <p class="intro">Navigate the night sky, meet distant worlds, and discover the extraordinary science hiding in plain sight.</p>
+          <a class="primary" href="#discover">Begin exploring <span>↗</span></a>
+        </div>
+        <!-- This planet is CSS artwork: gradients + shadows, no image file. -->
+        <div class="planet-stage" aria-label="Stylized planet">
+          <div class="ring ring-a"></div><div class="ring ring-b"></div>
+          <div class="planet"><div class="shade"></div></div><div class="moon"></div>
+          <small class="tag tag-a">KEPLER-186</small><small class="tag tag-b">01 / EXOPLANET</small>
+        </div>
+      </section>
+
+      <section class="section-title" id="discover">
+        <div><p class="eyebrow">START YOUR JOURNEY</p><h2>Explore the unknown<span>.</span></h2></div>
+        <p>Pick a destination. There is a lot out there.</p>
+      </section>
+      <section class="cards">
+        <article class="card"><div class="art solar"><div class="sun"></div><div class="orbit"></div></div><div class="card-body"><small>01 / OUR NEIGHBORHOOD</small><h3>The Solar System</h3><p>Eight planets. Countless moons. One extraordinary star.</p><a href="#worlds">Explore destination →</a></div></article>
+        <article class="card"><div class="art stars">✦ · ✧ · ✦</div><div class="card-body"><small>02 / DISTANT LIGHT</small><h3>Stars &amp; Constellations</h3><p>Find patterns and stories written across the sky.</p><a href="sky.html">Open the sky map →</a></div></article>
+        <article class="card"><div class="art nebula"><span>✦</span></div><div class="card-body"><small>03 / DEEP SPACE</small><h3>Beyond the Milky Way</h3><p>Galaxies, nebulae, and the edge of our imagination.</p><a href="#missions">Explore destination →</a></div></article>
+      </section>
+
+      <section class="world-index" id="worlds" aria-labelledby="worlds-title">
+        <div class="section-title"><div><p class="eyebrow">NAVIGATION HUB</p><h2 id="worlds-title">Choose your world<span>.</span></h2></div><p>Ten destinations, each with its own 3D model, facts and cross-section.</p></div>
+
+        <!-- A map of the Solar System in orbit order. Each dot is a link too. -->
+        <nav class="system-strip" aria-label="Solar System map, in order from the Sun">
+          <span class="strip-sun" aria-hidden="true"></span>
+          <a href="mercury.html" style="--c:#b9a897"><i></i><span>Mercury</span></a>
+          <a href="venus.html" style="--c:#f0c27a"><i></i><span>Venus</span></a>
+          <a href="earth.html" style="--c:#4aa8ff"><i></i><span>Earth</span></a>
+          <a href="mars.html" style="--c:#e3714a"><i></i><span>Mars</span></a>
+          <a href="asteroids.html" style="--c:#b5a08c" class="strip-belt"><i></i><span>Belt</span></a>
+          <a href="jupiter.html" style="--c:#e0a878"><i></i><span>Jupiter</span></a>
+          <a href="saturn.html" style="--c:#ecd49a"><i></i><span>Saturn</span></a>
+          <a href="uranus.html" style="--c:#8fe6ea"><i></i><span>Uranus</span></a>
+          <a href="neptune.html" style="--c:#5a82ff"><i></i><span>Neptune</span></a>
+        </nav>
+
+        <!-- Each card is ONE link (good for keyboards and screen readers). The planet art is pure CSS. -->
+        <div class="world-grid">
+          <a class="world-card" href="earth.html" style="--glow:#4aa8ff">
+            <span class="orb orb-earth" aria-hidden="true"></span>
+            <span class="wc-num">01 / 10</span>
+            <strong>Earth</strong>
+            <span class="wc-tag">Our home world</span>
+            <span class="wc-meta"><em>24 h day</em><em>1 moon</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="moon.html" style="--glow:#c8ccd6">
+            <span class="orb orb-moon" aria-hidden="true"></span>
+            <span class="wc-num">02 / 10</span>
+            <strong>Moon</strong>
+            <span class="wc-tag">Our silent companion</span>
+            <span class="wc-meta"><em>27.3 d orbit</em><em>Cratered, airless</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="mercury.html" style="--glow:#b9a897">
+            <span class="orb orb-mercury" aria-hidden="true"></span>
+            <span class="wc-num">03 / 10</span>
+            <strong>Mercury</strong>
+            <span class="wc-tag">Small, fast and scorched</span>
+            <span class="wc-meta"><em>88 d year</em><em>No moons</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="venus.html" style="--glow:#f0c27a">
+            <span class="orb orb-venus" aria-hidden="true"></span>
+            <span class="wc-num">04 / 10</span>
+            <strong>Venus</strong>
+            <span class="wc-tag">The cloud-wrapped furnace</span>
+            <span class="wc-meta"><em>465 °C surface</em><em>No moons</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="mars.html" style="--glow:#e3714a">
+            <span class="orb orb-mars" aria-hidden="true"></span>
+            <span class="wc-num">05 / 10</span>
+            <strong>Mars</strong>
+            <span class="wc-tag">The red planet</span>
+            <span class="wc-meta"><em>24 h 37 m day</em><em>2 moons</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="asteroids.html" style="--glow:#b5a08c">
+            <span class="orb orb-asteroids" aria-hidden="true"></span>
+            <span class="wc-num">06 / 10</span>
+            <strong>Asteroid Belt</strong>
+            <span class="wc-tag">Leftovers of a lost world</span>
+            <span class="wc-meta"><em>Millions of rocks</em><em>Between Mars & Jupiter</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="jupiter.html" style="--glow:#e0a878">
+            <span class="orb orb-jupiter" aria-hidden="true"></span>
+            <span class="wc-num">07 / 10</span>
+            <strong>Jupiter</strong>
+            <span class="wc-tag">King of the planets</span>
+            <span class="wc-meta"><em>9 h 56 m day</em><em>95+ moons</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="saturn.html" style="--glow:#ecd49a">
+            <span class="orb orb-saturn" aria-hidden="true"></span>
+            <span class="wc-num">08 / 10</span>
+            <strong>Saturn</strong>
+            <span class="wc-tag">Rings of wonder</span>
+            <span class="wc-meta"><em>Ring span 280,000 km</em><em>270+ moons</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="uranus.html" style="--glow:#8fe6ea">
+            <span class="orb orb-uranus" aria-hidden="true"></span>
+            <span class="wc-num">09 / 10</span>
+            <strong>Uranus</strong>
+            <span class="wc-tag">The tilted ice giant</span>
+            <span class="wc-meta"><em>98° axial tilt</em><em>29 moons</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="neptune.html" style="--glow:#5a82ff">
+            <span class="orb orb-neptune" aria-hidden="true"></span>
+            <span class="wc-num">10 / 10</span>
+            <strong>Neptune</strong>
+            <span class="wc-tag">The distant blue</span>
+            <span class="wc-meta"><em>2,100 km/h winds</em><em>16 moons</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+        </div>
+      </section>
+            <section class="world-index" id="asteroids" aria-labelledby="ast-title">
+        <div class="section-title"><div><p class="eyebrow">ASTEROIDS UP CLOSE</p><h2 id="ast-title">Real rocks, real shapes<span>.</span></h2></div><p>Thirteen asteroids. Ten use real NASA shape models: spin them, zoom in and see the craters and boulders.</p></div>
+        <div class="world-grid world-grid--wide">
+          <a class="world-card" href="ceres.html" style="--glow:#cbb89c">
+            <span class="orb orb-rock" aria-hidden="true" style="--rock:#8b8478;border-radius:50% 50% 50% 50%"></span>
+            <span class="wc-num">01 / 13</span>
+            <strong>Ceres</strong>
+            <span class="wc-tag">The belt's dwarf planet</span>
+            <span class="wc-meta"><em>Bright salt spots</em><em>940 km wide</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="vesta.html" style="--glow:#cbb89c">
+            <span class="orb orb-img" aria-hidden="true"><img src="models/vesta.png" alt="" loading="lazy" width="110" height="110"></span>
+            <span class="wc-num">02 / 13</span>
+            <strong>Vesta</strong>
+            <span class="wc-tag">A planet that never was</span>
+            <span class="wc-meta"><em>NASA model · giant crater</em><em>Dawn visited 2011</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="eros.html" style="--glow:#cbb89c">
+            <span class="orb orb-img" aria-hidden="true"><img src="models/eros.png" alt="" loading="lazy" width="110" height="110"></span>
+            <span class="wc-num">03 / 13</span>
+            <strong>Eros</strong>
+            <span class="wc-tag">The first asteroid landing</span>
+            <span class="wc-meta"><em>NASA model · 34 km long</em><em>NEAR Shoemaker 2001</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="ida.html" style="--glow:#cbb89c">
+            <span class="orb orb-rock" aria-hidden="true" style="--rock:#a89c8a;border-radius:58% 42% 46% 54% / 62% 56% 44% 38%"></span>
+            <span class="wc-num">04 / 13</span>
+            <strong>Ida</strong>
+            <span class="wc-tag">The asteroid with a moon</span>
+            <span class="wc-meta"><em>Moon: Dactyl</em><em>Galileo flyby 1993</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="itokawa.html" style="--glow:#cbb89c">
+            <span class="orb orb-img" aria-hidden="true"><img src="models/itokawa.png" alt="" loading="lazy" width="110" height="110"></span>
+            <span class="wc-num">05 / 13</span>
+            <strong>Itokawa</strong>
+            <span class="wc-tag">The sea-otter rock</span>
+            <span class="wc-meta"><em>NASA model · samples returned</em><em>Hayabusa 2005–2010</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="bennu.html" style="--glow:#cbb89c">
+            <span class="orb orb-img" aria-hidden="true"><img src="models/bennu.png" alt="" loading="lazy" width="110" height="110"></span>
+            <span class="wc-num">06 / 13</span>
+            <strong>Bennu</strong>
+            <span class="wc-tag">A spinning-top rubble pile</span>
+            <span class="wc-meta"><em>NASA model · samples returned</em><em>OSIRIS-REx 2023</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="ryugu.html" style="--glow:#cbb89c">
+            <span class="orb orb-rock" aria-hidden="true" style="--rock:#6f6d6d;border-radius:46% 54% 52% 48% / 44% 50% 50% 56%"></span>
+            <span class="wc-num">07 / 13</span>
+            <strong>Ryugu</strong>
+            <span class="wc-tag">Japan's dark diamond</span>
+            <span class="wc-meta"><em>Samples returned 2020</em><em>Hayabusa2 visited</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="toutatis.html" style="--glow:#cbb89c">
+            <span class="orb orb-img" aria-hidden="true"><img src="models/toutatis.png" alt="" loading="lazy" width="110" height="110"></span>
+            <span class="wc-num">08 / 13</span>
+            <strong>Toutatis</strong>
+            <span class="wc-tag">The tumbling twin</span>
+            <span class="wc-meta"><em>NASA model · tumbles</em><em>Chang'e 2 flyby 2012</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="kleopatra.html" style="--glow:#cbb89c">
+            <span class="orb orb-img" aria-hidden="true"><img src="models/kleopatra.png" alt="" loading="lazy" width="110" height="110"></span>
+            <span class="wc-num">09 / 13</span>
+            <strong>Kleopatra</strong>
+            <span class="wc-tag">The metal dog bone</span>
+            <span class="wc-meta"><em>NASA model · 2 moons</em><em>217 km long</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="geographos.html" style="--glow:#cbb89c">
+            <span class="orb orb-img" aria-hidden="true"><img src="models/geographos.png" alt="" loading="lazy" width="110" height="110"></span>
+            <span class="wc-num">10 / 13</span>
+            <strong>Geographos</strong>
+            <span class="wc-tag">The cigar in space</span>
+            <span class="wc-meta"><em>NASA model · very elongated</em><em>5.1 km long</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="golevka.html" style="--glow:#cbb89c">
+            <span class="orb orb-img" aria-hidden="true"><img src="models/golevka.png" alt="" loading="lazy" width="110" height="110"></span>
+            <span class="wc-num">11 / 13</span>
+            <strong>Golevka</strong>
+            <span class="wc-tag">Pushed by sunlight</span>
+            <span class="wc-meta"><em>NASA model · radar target</em><em>About 0.5 km</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="mithra.html" style="--glow:#cbb89c">
+            <span class="orb orb-img" aria-hidden="true"><img src="models/mithra.png" alt="" loading="lazy" width="110" height="110"></span>
+            <span class="wc-num">12 / 13</span>
+            <strong>Mithra</strong>
+            <span class="wc-tag">The bow-tie rock</span>
+            <span class="wc-meta"><em>NASA model · radar shape</em><em>About 3.4 km</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="hw1.html" style="--glow:#cbb89c">
+            <span class="orb orb-img" aria-hidden="true"><img src="models/hw1.png" alt="" loading="lazy" width="110" height="110"></span>
+            <span class="wc-num">13 / 13</span>
+            <strong>1996 HW1</strong>
+            <span class="wc-tag">Two rocks stuck together</span>
+            <span class="wc-meta"><em>NASA model · contact binary</em><em>About 3.8 km long</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="world-index" id="stars" aria-labelledby="stars-title">
+        <div class="section-title"><div><p class="eyebrow">STARS &amp; THE NIGHT SKY</p><h2 id="stars-title">Look up<span>.</span></h2></div><p>Explore the real sky, then visit three very different stars.</p></div>
+        <a class="sky-banner" href="sky.html">
+          <span class="sky-art"><svg viewBox="0 0 160 120" aria-hidden="true" focusable="false"><g stroke="#72e4ff" stroke-opacity=".55" stroke-width="1" fill="none"><path d="M75 8L50 18M75 8L100 22M50 18L62 62M100 22L88 58M62 62L75 60L88 58M62 62L55 102M88 58L105 98"/></g><g fill="#fff"><circle cx="50" cy="18" r="4" fill="#ff9a62"/><circle cx="100" cy="22" r="3"/><circle cx="75" cy="8" r="2"/><circle cx="62" cy="62" r="3"/><circle cx="75" cy="60" r="3"/><circle cx="88" cy="58" r="3"/><circle cx="55" cy="102" r="3"/><circle cx="105" cy="98" r="4.5" fill="#b9d2ff"/></g></svg></span>
+          <span class="sky-copy"><span class="wc-num">SKY MAP</span><strong>The night sky</strong>
+            <span class="wc-tag">Fly between 12 constellations, tap any of 79 real stars, and follow the Milky Way. Drag to look around.</span>
+            <span class="wc-go">Open the sky map ↗</span></span>
+        </a>
+        <div class="world-grid world-grid--wide">
+          <a class="world-card" href="sun.html" style="--glow:#ffb74d">
+            <span class="orb orb-star" aria-hidden="true" style="background:radial-gradient(circle at 35% 30%,#fff3c4,#ffb23d 55%,#f06a2a);box-shadow:0 0 40px #ffb74d88,0 0 90px #ffb74d33"></span>
+            <span class="wc-num">01 / 03</span>
+            <strong>The Sun</strong>
+            <span class="wc-tag">Our star</span>
+            <span class="wc-meta"><em>Yellow dwarf · 4.6 billion years</em><em>Cross-section included</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="sirius.html" style="--glow:#a8c8ff">
+            <span class="orb orb-star" aria-hidden="true" style="background:radial-gradient(circle at 35% 30%,#ffffff,#bcd4ff 55%,#6f95ff);box-shadow:0 0 40px #a8c8ff88,0 0 90px #a8c8ff33"></span>
+            <span class="wc-num">02 / 03</span>
+            <strong>Sirius</strong>
+            <span class="wc-tag">The brightest night star</span>
+            <span class="wc-meta"><em>8.6 light-years away</em><em>With a white dwarf companion</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+          <a class="world-card" href="betelgeuse.html" style="--glow:#ff7a45">
+            <span class="orb orb-star" aria-hidden="true" style="background:radial-gradient(circle at 35% 30%,#ffc08a,#f0642a 55%,#9a2a0e);box-shadow:0 0 40px #ff7a4588,0 0 90px #ff7a4533"></span>
+            <span class="wc-num">03 / 03</span>
+            <strong>Betelgeuse</strong>
+            <span class="wc-tag">A red supergiant</span>
+            <span class="wc-meta"><em>~550 light-years away</em><em>Would swallow Mars</em></span>
+            <span class="wc-go" aria-hidden="true">Explore ↗</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="mission" id="missions"><div><p class="eyebrow">MISSION CONTROL</p><h2>Curiosity is your compass.</h2><p>ORBIT is a growing collection of tools for curious minds.</p></div><div class="stat"><strong id="star-count">—</strong><small>stars in this little sky</small></div></section>
+    </main>
+    <footer>ORBIT<span>.</span> A small window into a very large universe. <b>MADE FOR THE CURIOUS ✦</b></footer>
+  </div>
+  <p class="sr-only" id="status" aria-live="polite"></p>
+</body>
+</html>
